@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import WeatherBanner from '@/components/weather-banner.vue';
 import ChapmanCares from '@/components/chapman-cares.vue';
+import CaresForm from './components/cares-form.vue';
 </script>
 
 <template>
     <div id="app">
         <WeatherBanner />
         <ChapmanCares />
+        <CaresForm />
     </div>
 </template>
 

@@ -13,9 +13,7 @@ const getTemp = async () => {
     const endpoint = `${url}?zip=${zipCode}&appid=${apiKey}&units=${units}`;
 
     // make api call
-    const response = $fetch(endpoint);
-
-    console.log(response);
+    const response = await $fetch(endpoint);
 
     // display current temp on page
     currentTemp.value = response.main.temp;
