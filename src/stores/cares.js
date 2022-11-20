@@ -1,4 +1,4 @@
-import { defineStore  } from 'pinia';
+import { defineStore, acceptHMRUpdate  } from 'pinia';
 
 export const useCares = defineStore('cares', {
     state: () => ({
@@ -8,12 +8,16 @@ export const useCares = defineStore('cares', {
         disableButton: false
     }),
     actions: {
+        // Re-enables the disable submit button 
         clearButton() {
             this.disableButton = !this.disableButton;
         },
+        // Simulated 1.5 second time to process a request
         processing() {
-            setTimeout(this.clearButton, 300);
+            setTimeout(this.clearButton, 1500);
         },
+        // Simple form validation, Name field is required 
+        // and if phone number is available validate only digits with a max of 10 characters
         checkForm(e) {
             const reNum =  /^[0-9]{10}$/;
             const reText =  /^[A-Za-z]*$/;
@@ -22,7 +26,6 @@ export const useCares = defineStore('cares', {
 
             this.errors = [];
 
-            console.log('named', reText.test(inputName));
             if (inputName.length === 0) this.errors.push("Name required.");
             if (inputName.length > 0 && !reText.test(inputName)) this.errors.push("Name field has errors.");
             if (inputPhone.length > 0 && !reNum.test(inputPhone)) this.errors.push("Phone field has errors.");
@@ -31,6 +34,7 @@ export const useCares = defineStore('cares', {
                 return true;
               }
         },
+        // Form submit request
         onSubmitClick(e) {
             e.preventDefault();
 
@@ -45,6 +49,6 @@ export const useCares = defineStore('cares', {
     },
 });
 
-// if (import.meta.hot) {
-//     import.meta.hot.accept(acceptHMRUpdate(useCares, import.meta.hot));
-// }
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(useCares, import.meta.hot));
+}
