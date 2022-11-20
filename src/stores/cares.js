@@ -12,7 +12,7 @@ export const useCares = defineStore('cares', {
             this.disableButton = !this.disableButton;
         },
         processing() {
-            setTimeout(this.clearButton, 300);
+            setTimeout(this.clearButton, 1500);
         },
         checkForm(e) {
             const reNum =  /^[0-9]{10}$/;
@@ -22,7 +22,6 @@ export const useCares = defineStore('cares', {
 
             this.errors = [];
 
-            console.log('named', reText.test(inputName));
             if (inputName.length === 0) this.errors.push("Name required.");
             if (inputName.length > 0 && !reText.test(inputName)) this.errors.push("Name field has errors.");
             if (inputPhone.length > 0 && !reNum.test(inputPhone)) this.errors.push("Phone field has errors.");
