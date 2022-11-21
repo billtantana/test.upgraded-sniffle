@@ -5,12 +5,14 @@ export const useCares = defineStore('cares', {
         name: '',
         phone: '',
         errors: [],
-        disableButton: false
+        disableButton: false,
+        success: false
     }),
-    actions: {
-        // Re-enables the disable submit button 
+    actions: {      
+        // Re-enables the disable submit button on success
         clearButton() {
             this.disableButton = !this.disableButton;
+            this.success = true;
         },
         // Simulated 1.5 second time to process a request
         processing() {

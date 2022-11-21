@@ -3,7 +3,10 @@
     <HeadingText>Shift your carreer into overdrive!</HeadingText>
     <img :src="CareerImage" alt="Careers">
     <div class="form-container">
-      <p v-show="!careStore.disableButton && !careStore.errors.length" class="form-text">We're seeking friendly, happy individuals up for the challenge to change the way people view the automotive industry. If you agree that a customer's time is valuable and positive human interaction is important, then we want to hear from you!</p>
+      <p class="success-message" v-show="careStore.success && !careStore.disableButton">
+        <strong>Your for has been successfully submitted. Thank you!</strong>
+      </p>
+      <p v-show="!careStore.disableButton && !careStore.errors.length && !careStore.success" class="form-text">We're seeking friendly, happy individuals up for the challenge to change the way people view the automotive industry. If you agree that a customer's time is valuable and positive human interaction is important, then we want to hear from you!</p>
       <div v-show="careStore.errors.length">
         <p class="form-text error-message">There was an error in the form.</p>
         <ul class="error-message">
